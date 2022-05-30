@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1300px">
+    <link rel="stylesheet" href="/static/icon.css">
+    <link rel="stylesheet" href="/static/commen.css">
+    <link rel="stylesheet" href="/static/detail.css">
+    <title>列表详情</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="leftBox">
+                <div class="title">流程事务：02 差旅费报销审批单202004 项目管理部 余海</div>
+                <div class="tabs">
+                    <div class="tab active">
+                        <span>
+                            表单信息
+                        </span>
+                    </div>
+                    <div class="tab">
+                        <span>
+                            正文信息
+                        </span>
+                    </div>
+                    <div class="tab">
+                        <span>
+                            相关事务与附件信息
+                        </span>
+                    </div>
+                    <div class="tab">
+                        <span>
+                            流转信息
+                        </span>
+                    </div>
+                    <div class="tab">
+                        <span>
+                            流转信息
+                        </span>
+                    </div>
+                    <div class="tab">
+                        <span>
+                            流转信息
+                        </span>
+                    </div>
+                    <div class="tab">
+                        <span>
+                            讨论
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="rightBtns">
+                <button class="btn primary">保存表单</button>
+                <button class="btn primary">提交流程</button>
+                <button class="btn primary">传阅他人</button>
+                <button class="btn">审批拒绝</button>
+                <button class="btn">结束流程</button>
+                <div class="moreBox">
+                    <div class="more">
+                        <i class="iconfont icon-xinjian"></i>
+                        <div class="moreModal">
+                            <div class="item">
+                                正文
+                            </div>
+                            <div class="item">
+                                打印审批单
+                            </div>
+                            <div class="item">
+                                PDF
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <div class="container">
+                <div class="tableBox">
+
+                </div>
+                <div class="rightAside">
+                    <div class="panel">
+                        <div class="row">
+                            <p class="title">相关事务</p>
+                            <p class="textBtn">
+                                添加
+                            </p>
+                        </div>
+                    </div>
+                    <div class="panel upload">
+                        <div class="row">
+                            <p class="title">相关事务 <span class="num">（7）</span></p>
+                            <p class="textBtn">
+                                上传
+                            </p>
+                        </div>
+                        <div class="uploadForm">
+                            <!-- <select name="" id="">
+                                <option value="">
+                                    人力资源类
+                                </option>
+                                <option value="">
+                                    差旅类
+                                </option>
+                                <option value="">
+                                    餐饮类
+                                </option>
+                            </select> -->
+                            <div class="select">
+                                <p class="val">全部分类</p>
+                                <p class="arrowIcon">
+                                    <i class="iconfont icon-xiala"></i>
+                                </p>
+                                <div class="selectModal">
+                                    <div class="item">
+                                        正文
+                                    </div>
+                                    <div class="item">
+                                        打印审批单
+                                    </div>
+                                    <div class="item">
+                                        PDF
+                                    </div>
+                                </div>
+                            </div>
+                            <span>
+                                <i class="iconfont icon-jichushezhi"></i>
+                            </span>
+                            <span>
+                                <i class="iconfont icon-jichushezhi"></i>
+                            </span>
+                        </div>
+                        <div class="fileList">
+                            <div class="fileItem">
+                                <div class="lImg">
+                                    <img src="/static/images/02.3.1.Pdf.png" alt="">
+                                </div>
+                                <div class="fileInfo">
+                                    <div class="name rowEllipsis">1. 滴滴电子发票</div>
+                                    <div class="operation">
+                                        <span class="text">查看</span>  ·
+                                        <span class="text">下载</span>
+                                    </div>
+                                    <div class="size">
+                                        <span class="time">15:21</span> ・ 40.18k
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fileItem">
+                                <div class="lImg">
+                                    <img src="/static/images/02.3.1.PPT.png" alt="">
+                                </div>
+                                <div class="fileInfo">
+                                    <div class="name rowEllipsis">1. 滴滴电子发票</div>
+                                    <div class="operation">
+                                        <span class="text">查看</span> ·
+                                        <span class="text">下载</span>
+                                    </div>
+                                    <div class="size">
+                                        <span class="time">15:21</span> ・ 40.18k
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/utils/jquery.min.js"></script>
+<script>
+    $(function(){
+        $('.select').click(function(e){
+            e.stopPropagation();
+            $(this).toggleClass('active');
+            $(this).find('.selectModal').toggle();
+            $(this).find('.selectModal .item').click(function(){
+                var val = $(this).html();
+                $('.select .val').html(val)
+            })
+        })
+        $('.wrapper').click(function(){
+            $('.select').removeClass('active')
+            $('.select').find('.selectModal').hide();
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,63 @@
+.center {
+    margin-top: 64px;
+    width: 100%;
+    min-height: 100vh;
+    background: #f0f2f6;
+}
+.layoutContent{
+    display: flex;
+}
+.layoutCenter{
+    flex: 1;
+    padding: 24px;
+    box-sizing: border-box;
+    margin-left: 140px;
+}
+.layoutCenter .layoutContainer{
+    width: 100%;
+    display: flex;
+}
+.treeTemplate{
+    width: 220px;
+    height: 720px;
+    background: #fff;
+    padding: 21px 10px;
+    box-sizing: border-box;
+}
+.layoutCenter .layoutContainer .guideWrap{
+    flex: 1;
+    height: 720px;
+    padding: 16px 20px;
+    background: #fff;
+    border-left: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    position: relative;
+}
+.layoutCenter .layoutContainer .guideWrap .sanlan{
+    position: absolute;
+    left: 0;
+    top: calc(50% - 56px);
+    border: 10px solid transparent;
+    border-left: 18px solid #d1d1d1;
+    height: 87px;
+    width: 0px;
+    cursor: pointer;
+}
+.layoutCenter .layoutContainer .guideWrap .sanlan .icon-xiala{
+    position: absolute;
+    left: -18px;
+    top: 38px;
+    transform: rotate(90deg);
+    color: #666666;
+}
+.tabs{
+    width: 100%;
+    flex: 1;
+}
+.tabs .tab .tabChild .name{
+    margin-left: 2px;
+    display: inline-block;
+}
+.tabs .tab .num.active{
+    color: #f53f3f;
+}

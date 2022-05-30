@@ -1,0 +1,274 @@
+.wrapper{
+    height: 100vh;
+    background: #f0f2f6;
+}
+.header{
+    height: 80px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 34px;
+    box-sizing: border-box;
+}
+.header .leftBox .title{
+    color: #1d2129;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.tabs{
+    border-bottom: none;
+    line-height: 34px;
+}
+.tabs .tab{
+    padding-right: 36px;
+    padding-left: 0;
+}
+.tabs .tab span{
+    height: 34px;
+}
+.rightBtns .btn{
+    margin-right: 8px;
+    float: left;
+    margin-top: 24px;
+}
+.rightBtns .btn:hover{
+    color: rgb(78,89,105);
+    background-color: rgb(229,230,235);
+    border-color: transparent;
+}
+.rightBtns .btn.primary:hover{
+    color: #fff;
+    background-color: rgb(64,128,255);
+    border-color: transparent;   
+}
+.rightBtns .moreBox{
+    height: 100%;
+    padding-top: 24px;
+    box-sizing: border-box;
+    float: left;
+}
+.rightBtns .more{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #999999;
+    cursor: pointer;
+    position: relative;
+}
+.rightBtns .more:hover{
+    color: rgb(78,89,105);
+    background: #f2f3f5;
+}
+.rightBtns .more .moreModal{
+    position: absolute;
+    width: 132px;
+    min-height: 86px;
+    max-height: 188px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+    top: 44px;
+    right: 0;
+    padding: 4px 0;
+    box-sizing: border-box;
+    overflow: auto;
+    cursor: pointer;
+    display: none;
+}
+.rightBtns .more .moreModal .item{
+    font-size: 14px;
+    color: #4e5969;
+    line-height: 36px;
+    padding-left: 24px;
+    background: #fff;
+    font-weight: normal;
+}
+.rightBtns .moreBox:hover .moreModal{
+    display: block;
+}
+.rightBtns .more .moreModal .item:hover{
+    color:#165dff;
+    background: #f2f3f5;
+}
+.rightBtns .more .moreModal:hover{
+    transition: all .5s;
+    display: block;
+}
+.center{
+    padding: 24px;
+}
+.center .container{
+    display: flex;
+    justify-content: space-between;
+}
+.center .container .tableBox{
+    flex: 1;
+    height: 600px;
+    background: #fff;
+    border-radius: 4px;
+    margin-right: 12px;
+}
+.center .container .rightAside{
+    width: 280px;
+}
+.center .container .rightAside .affair {
+
+}
+.panel{
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+.panel .row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 19px;
+}
+.panel .row .title{
+    font-size: 16px;
+    color: #1d2129;
+    font-weight: bold;
+}
+.panel .row .title .num{
+    font-size: 14px;
+    color: #aaaaaa;
+    font-weight: normal;
+}
+.panel .row .textBtn{
+    width: 44px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #165dff;
+    cursor: pointer;
+    border-radius: 2px;
+}
+.panel .row .textBtn:hover{
+    background: #f2f3f5;
+}
+.upload .uploadForm{
+    display: flex;
+    align-items: center;
+}
+.upload .uploadForm .select{
+    width: 160px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 2px;
+    margin-right: 8px;
+    font-size: 14px;
+    color: #4e5969;
+    padding: 5px 12px;
+    background: #f2f3f5;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #4e5969;
+    position: relative;
+}
+.upload .uploadForm .select .val{
+    flex: 1;
+}
+.upload .uploadForm .select .arrowIcon{
+    width: 12px;
+    font-size: 12px;
+}
+.upload .uploadForm .select.active{
+    border: 1px solid #165dff;
+    background: #ffff;
+}
+.upload .uploadForm span{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #165dff;
+    font-size: 18px;
+    margin-right: 22px;
+}
+.upload .uploadForm span:hover{
+    background: #f2f3f5;
+}
+.upload .fileList{
+    margin-top: 20px;
+}
+.upload .fileList .fileItem{
+    height: 77px;
+    border-bottom: 1px solid #e5e6eb;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 13px;
+}
+.upload .fileList .fileItem .lImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+}
+.upload .fileList .fileItem .lImg img{
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+}
+.upload .fileList .fileItem .fileInfo {
+    flex: 1;
+    margin-left: 10px;
+}
+.upload .fileList .fileItem .fileInfo .name{
+    font-size: 14px;
+    font-weight: bold;
+    color: #1d2129;
+}
+.upload .fileList .fileItem .fileInfo .operation{
+    font-size: 14px;
+    color: #165dff;
+    margin: 3px 0;
+}
+.upload .fileList .fileItem .fileInfo .size{
+    color: #b8bbcc;
+    font-size: 12px;
+}
+
+.selectModal{
+    position: absolute;
+    width: 100%;
+    min-height: 86px;
+    max-height: 188px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+    top: 105%;
+    left: 0;
+    padding: 4px 0;
+    box-sizing: border-box;
+    overflow: auto;
+    cursor: pointer;
+    display: none;
+}
+.selectModal{
+    font-size: 14px;
+    color: #4e5969;
+    line-height: 36px;
+    background: #fff;
+    font-weight: normal;
+}
+.selectModal .item{
+    padding-left: 24px;
+}
+.selectModal .item:hover{
+    color:#165dff;
+    background: #f2f3f5;
+}
+.moreMselectModalodal:hover{
+    transition: all .5s;
+    display: block;
+}

@@ -5,16 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=1300px">
     <link rel="stylesheet" href="/static/icon.css">
-    <link rel="stylesheet" href="/static/commen.css">
+    <link rel="stylesheet" href="/static/common.css">
     <link rel="stylesheet" href="/static/detail.css">
     <title>列表详情</title>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="pageWrapper">
         <div class="header">
             <div class="leftBox">
                 <div class="title">流程事务：02 差旅费报销审批单202004 项目管理部 余海</div>
-                <div class="tabs">
+                <div class="tabContainer notBorder">
+                    <div class="tabList">
+                        <div class="tab active">
+                            <div class="tabHover">
+                                <span class="tabText">
+                                    表单信息
+                                </span>
+                            </div>
+                        </div>
+                        <div class="tab">
+                            <div class="tabHover">
+                                <span class="tabText">
+                                    正文信息
+                                </span>
+                            </div>
+                        </div>
+                        <div class="tab">
+                            <div class="tabHover">
+                                <span class="tabText">
+                                    相关事务与附件信息
+                                </span>
+                            </div>
+                        </div>
+                        <div class="tab">
+                            <div class="tabHover">
+                                <span class="tabText">
+                                    流转信息
+                                </span>
+                            </div>
+                        </div>
+                        <div class="tab">
+                            <div class="tabHover">
+                                <span class="tabText">
+                                    流转信息
+                                </span>
+                            </div>
+                        </div>
+                        <div class="tab">
+                            <div class="tabHover">
+                                <span class="tabText">
+                                    流转信息
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="tabs">
                     <div class="tab active">
                         <span>
                             表单信息
@@ -50,7 +96,7 @@
                             讨论
                         </span>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="rightBtns">
                 <button class="btn primary">保存表单</button>
@@ -61,7 +107,26 @@
                 <div class="moreBox">
                     <div class="more">
                         <i class="iconfont icon-xinjian"></i>
-                        <div class="moreModal">
+                        <div class="dropMenuWapper">
+                            <div class="dropMenu">
+                                <div class="dropMenuItem">
+                                    <span class="name">
+                                        正文
+                                    </span>
+                                </div>
+                                <div class="dropMenuItem">
+                                    <span class="name">
+                                        打印审批单
+                                    </span>
+                                </div>
+                                <div class="dropMenuItem">
+                                    <span class="name">
+                                        PDF
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="moreModal">
                             <div class="item">
                                 正文
                             </div>
@@ -71,7 +136,7 @@
                             <div class="item">
                                 PDF
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -114,7 +179,26 @@
                                 <p class="arrowIcon">
                                     <i class="iconfont icon-xiala"></i>
                                 </p>
-                                <div class="selectModal">
+                                <div class="dropMenuWapper selectModal">
+                                    <div class="dropMenu">
+                                        <div class="dropMenuItem">
+                                            <span class="name">
+                                                正文
+                                            </span>
+                                        </div>
+                                        <div class="dropMenuItem">
+                                            <span class="name">
+                                                打印审批单
+                                            </span>
+                                        </div>
+                                        <div class="dropMenuItem">
+                                            <span class="name">
+                                                PDF
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="selectModal">
                                     <div class="item">
                                         正文
                                     </div>
@@ -124,12 +208,12 @@
                                     <div class="item">
                                         PDF
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
-                            <span>
+                            <span class="iconBox">
                                 <i class="iconfont icon-jichushezhi"></i>
                             </span>
-                            <span>
+                            <span class="iconBox">
                                 <i class="iconfont icon-jichushezhi"></i>
                             </span>
                         </div>
@@ -146,6 +230,28 @@
                                     </div>
                                     <div class="size">
                                         <span class="time">15:21</span> ・ 40.18k
+                                    </div>
+                                </div>
+                                <div class="iconBox more">
+                                    <i class="iconfont icon-xiala"></i>
+                                    <div class="dropMenuWapper uploadDrop">
+                                        <div class="dropMenu">
+                                            <div class="dropMenuItem">
+                                                <span class="name">
+                                                    正文
+                                                </span>
+                                            </div>
+                                            <div class="dropMenuItem">
+                                                <span class="name">
+                                                    打印审批单
+                                                </span>
+                                            </div>
+                                            <div class="dropMenuItem">
+                                                <span class="name">
+                                                    PDF
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -178,14 +284,22 @@
             e.stopPropagation();
             $(this).toggleClass('active');
             $(this).find('.selectModal').toggle();
-            $(this).find('.selectModal .item').click(function(){
+            $(this).find('.selectModal .dropMenuItem').click(function(){
                 var val = $(this).html();
                 $('.select .val').html(val)
             })
         })
-        $('.wrapper').click(function(){
+        $('body').click(function(){
             $('.select').removeClass('active')
             $('.select').find('.selectModal').hide();
+        })
+        $('.upload .more').click(function(){
+            $(this).find('.dropMenuWapper').toggle();
+            $(this).find('.dropMenuWapper .dropMenuItem').click(function(e){
+                e.stopPropagation();
+                console.log($(this),'----')
+                $(this).parents('.dropMenuWapper').hide();
+            })
         })
     })
 </script>

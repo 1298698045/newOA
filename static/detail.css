@@ -1,5 +1,5 @@
-.wrapper{
-    height: 100vh;
+.pageWrapper{
+    height: 100%;
     background: #f0f2f6;
 }
 .header{
@@ -9,23 +9,19 @@
     justify-content: space-between;
     padding: 0 34px;
     box-sizing: border-box;
+    border-bottom: 1px solid #e5e6eb;
+    box-shadow: 0px 2px 8px 0px rgba(237, 239, 243, 1);
 }
 .header .leftBox .title{
     color: #1d2129;
     font-size: 18px;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 15px;
+    margin-left: 5px;
 }
-.tabs{
-    border-bottom: none;
-    line-height: 34px;
-}
-.tabs .tab{
-    padding-right: 36px;
-    padding-left: 0;
-}
-.tabs .tab span{
-    height: 34px;
+.tabContainer.notBorder .tabList .tab{
+    padding: 0;
+    padding-right: 32px;
 }
 .rightBtns .btn{
     margin-right: 8px;
@@ -63,7 +59,13 @@
     color: rgb(78,89,105);
     background: #f2f3f5;
 }
-.rightBtns .more .moreModal{
+.rightBtns .more .dropMenuWapper{
+    min-height: 86px !important;
+    top: 44px;
+    left: initial;
+    right: 0;
+}
+/* .rightBtns .more .moreModal{
     position: absolute;
     width: 132px;
     min-height: 86px;
@@ -87,9 +89,6 @@
     background: #fff;
     font-weight: normal;
 }
-.rightBtns .moreBox:hover .moreModal{
-    display: block;
-}
 .rightBtns .more .moreModal .item:hover{
     color:#165dff;
     background: #f2f3f5;
@@ -97,7 +96,11 @@
 .rightBtns .more .moreModal:hover{
     transition: all .5s;
     display: block;
+} */
+.rightBtns .moreBox:hover .dropMenuWapper{
+    display: block;
 }
+
 .center{
     padding: 24px;
 }
@@ -186,7 +189,7 @@
     border: 1px solid #165dff;
     background: #ffff;
 }
-.upload .uploadForm span{
+.upload .uploadForm .iconBox{
     display: inline-block;
     width: 32px;
     height: 32px;
@@ -196,7 +199,7 @@
     font-size: 18px;
     margin-right: 22px;
 }
-.upload .uploadForm span:hover{
+.upload .uploadForm .iconBox:hover{
     background: #f2f3f5;
 }
 .upload .fileList{
@@ -238,37 +241,29 @@
     font-size: 12px;
 }
 
-.selectModal{
-    position: absolute;
+.dropMenuWapper.selectModal{
     width: 100%;
     min-height: 86px;
     max-height: 188px;
-    background: #fff;
-    border-radius: 3px;
+    border: 1px solid #e5e6eb;
     box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
     top: 105%;
     left: 0;
-    padding: 4px 0;
-    box-sizing: border-box;
-    overflow: auto;
-    cursor: pointer;
-    display: none;
 }
-.selectModal{
-    font-size: 14px;
-    color: #4e5969;
-    line-height: 36px;
-    background: #fff;
-    font-weight: normal;
+.upload .iconBox{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
-.selectModal .item{
-    padding-left: 24px;
-}
-.selectModal .item:hover{
-    color:#165dff;
+.upload .iconBox:hover{
     background: #f2f3f5;
 }
-.moreMselectModalodal:hover{
-    transition: all .5s;
-    display: block;
+.upload .dropMenuWapper.uploadDrop{
+    top: 100%;
+    right: 0;
+    min-height: 86px;
+    max-height: 188px;
 }

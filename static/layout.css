@@ -1,19 +1,20 @@
 .center {
     margin-top: 64px;
     width: 100%;
-    min-height: 100vh;
+    height: calc(100% - 64px);
     background: #f0f2f6;
 }
 .layoutContent{
-    display: flex;
+    height: 100%;
 }
-.layoutCenter{
-    flex: 1;
+.rightWrapper{
+    height: 100%;
+    overflow: auto;
     padding: 24px;
     box-sizing: border-box;
     margin-left: 140px;
 }
-.layoutCenter .layoutContainer{
+.rightWrapper .layoutContainer{
     width: 100%;
     display: flex;
 }
@@ -24,7 +25,7 @@
     padding: 21px 10px;
     box-sizing: border-box;
 }
-.layoutCenter .layoutContainer .guideWrap{
+.rightWrapper .layoutContainer .guideWrap{
     flex: 1;
     height: 720px;
     padding: 16px 20px;
@@ -33,7 +34,7 @@
     box-sizing: border-box;
     position: relative;
 }
-.layoutCenter .layoutContainer .guideWrap .sanlan{
+.rightWrapper .layoutContainer .guideWrap .sanlan{
     position: absolute;
     left: 0;
     top: calc(50% - 56px);
@@ -43,14 +44,25 @@
     width: 0px;
     cursor: pointer;
 }
-.layoutCenter .layoutContainer .guideWrap .sanlan .icon-xiala{
+.rightWrapper .layoutContainer .guideWrap .sanlan.active .icon-xiala{
+    transform: rotate(270deg);
+}
+.rightWrapper .layoutContainer .guideWrap .sanlan .icon-xiala{
     position: absolute;
     left: -18px;
     top: 38px;
     transform: rotate(90deg);
     color: #666666;
 }
-.tabs{
+.rightWrapper .footInfo{
+    width: 192px;
+    margin: 40px auto;
+    text-align: center;
+    font-size: 12px;
+    color: #333333;
+    line-height: 2;
+}
+/* .tabs{
     width: 100%;
     flex: 1;
 }
@@ -60,4 +72,4 @@
 }
 .tabs .tab .num.active{
     color: #f53f3f;
-}
+} */

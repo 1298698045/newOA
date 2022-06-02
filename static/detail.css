@@ -105,20 +105,26 @@
     padding: 24px;
 }
 .center .container{
+    display: none;
+}
+/* .center .container:nth-child(7){
+    display: block!important;
+} */
+.center .containerForm{
     display: flex;
     justify-content: space-between;
 }
-.center .container .tableBox{
+.center .containerForm .tableBox{
     flex: 1;
     height: 600px;
     background: #fff;
     border-radius: 4px;
     margin-right: 12px;
 }
-.center .container .rightAside{
+.center .containerForm .rightAside{
     width: 280px;
 }
-.center .container .rightAside .affair {
+.center .containerForm .rightAside .affair {
 
 }
 .panel{

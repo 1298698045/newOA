@@ -273,3 +273,20 @@
     min-height: 86px;
     max-height: 188px;
 }
+/* 右侧相关事务 */
+.relevantList .relevantItem{
+    padding: 13px 8px;
+    border-bottom: 1px solid #e5e6eb;
+}
+.relevantList .relevantItem:last-child{
+    border-bottom: none;
+}
+.relevantList .relevantItem .relevantTitle{
+    font-size: 14px;
+    color: #1d2129;
+}
+.relevantList .relevantItem .relevantTimerInfo{
+    font-size: 12px;
+    color: #86909c;
+    padding-top: 10px;
+}

@@ -876,3 +876,29 @@ input,button{outline: 0;border:none;}
 .btnText:hover{
     background: #f2f3f5;
 }
+
+/* 圆角标签tab切换 */
+.tabList{
+    display: flex;
+    align-items: center;
+}
+.tabList .tabItem{
+    padding: 6px 16px;
+    border-radius: 16px;
+    background: transparent;
+    font-size: 14px;
+    margin-right: 10px;
+    color: #4e5969;
+}
+.tabList .tabItem:last-child{
+    margin-right: 0;
+}
+.tabList .tabItem.active{
+    background:#f2f3f5;
+    color: #165dff;
+    font-weight: bold;
+}
+.tabList .tabItem:hover{
+    background:#f2f3f5;
+    cursor: pointer;
+}

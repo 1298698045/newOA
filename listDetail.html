@@ -162,10 +162,18 @@
                                 添加
                             </p>
                         </div>
+                        <div class="relevantList">
+                            <div class="relevantItem">
+                                <div class="relevantTitle">06 出差机票预定申请表 项目管理部 余海</div>
+                                <div class="relevantTimerInfo">
+                                    2022-05-10 15:13:41 余海
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="panel upload">
                         <div class="row">
-                            <p class="title">相关事务 <span class="num">（7）</span></p>
+                            <p class="title">相关附件 <span class="num">（7）</span></p>
                             <p class="textBtn">
                                 上传
                             </p>
@@ -334,10 +342,16 @@
                                     style="width: 100%" @selection-change="selectRemarksChange">
                                     <el-table-column type="selection" width="55">
                                     </el-table-column>
-                                    <el-table-column label="关联事务">
+                                    <el-table-column label="类型">
+                                        <template slot-scope="scope">{{ scope.row.date }}</template>
+                                    </el-table-column>
+                                    <el-table-column label="标题">
                                         <template slot-scope="scope">{{ scope.row.date }}</template>
                                     </el-table-column>
                                     <el-table-column prop="name" label="关联时间">
+                                    </el-table-column>
+                                    <el-table-column label="创建人">
+                                        <template slot-scope="scope">{{ scope.row.date }}</template>
                                     </el-table-column>
                                     <el-table-column label="操作">
                                         <template slot-scope="scope">

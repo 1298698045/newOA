@@ -19,7 +19,7 @@
     display: none;
 }
 .rightWrapper .layoutContainer.todoListWrap{
-    display: none;
+    display: flex !important;
 }
 .treeTemplate{
     width: 220px;

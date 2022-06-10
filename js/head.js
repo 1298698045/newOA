@@ -93,7 +93,7 @@ resizeWidthFun(documentWidth, topMenuWrapWidth, topMenuItemWidth, totalNum);
     topMenuWrapWidth = $(".topMenuWapper").width();
     totalNum = $(".topMenuWapper .topTabMenuItem").length - 3;
     if(documentWidth>=1914){
-      location.reload();
+      // location.reload();
     }
     resizeWidthFun(documentWidth, topMenuWrapWidth, topMenuItemWidth, totalNum);
   })

@@ -1,0 +1,143 @@
+body{
+    background: #f0f2f6;
+}
+.container{
+    padding: 16px 24px;
+}
+.container .center {
+    height: 500px;
+    display: flex;
+    margin-top: 16px;
+}
+.container .center .leftBd{
+    flex: 1;
+    height: 100%;
+    background: #fff;
+    margin-right: 12px;
+    border-radius: 4px;
+    padding: 22px 20px;
+    box-sizing: border-box;
+}
+.container .center .rightBd{
+    height: 100%;
+    width: 280px;
+    border-radius: 4px;
+}
+.container .center .leftBd .title{
+    font-size: 37px;
+    color: #1d2129;
+    font-weight: bold;
+}
+.container .center .leftBd .info{
+    margin-top: 15px;
+    margin-bottom: 35px;
+    font-size: 14px;
+    color: #86909c;
+}
+.container .center .leftBd .info .num{
+    color: #1d2129;
+}
+.container .center .leftBd .tagWrap{
+    margin: 14px 0;
+    font-size: 14px;
+    color: #86909c;
+}
+.container .center .leftBd .tagWrap span{
+    margin-left: 10px;
+}
+.tag{
+    display: inline-block;
+    padding: 5px 16px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    font-size: 14px;
+    background: #f2f3f5;
+    cursor: pointer;
+}
+.tag:hover{
+    color: #165dff;
+}
+.operation{
+    width: 25%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.operation .iconfont{
+    font-size: 16px;
+}
+.operation .btnRadius{
+    width: 80px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e5e6eb;
+    cursor: pointer;
+    border-radius: 18px;
+    padding: 8px 13px;
+    color: #4e5969;
+}
+.panel{
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+.panel .row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 19px;
+}
+.panel .row .title{
+    font-size: 16px;
+    color: #1d2129;
+    font-weight: bold;
+}
+.panel .row .title .num{
+    font-size: 14px;
+    color: #aaaaaa;
+    font-weight: normal;
+}
+.panel .row .textBtn{
+    width: 44px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #165dff;
+    cursor: pointer;
+    border-radius: 2px;
+}
+.panel .row .textBtn:hover{
+    background: #f2f3f5;
+}
+.panel .panelList .panelItem{
+    padding: 12px 8px;
+    box-sizing: border-box;
+}
+.panel .panelList .panelItem:hover{
+    cursor: pointer;
+    background: #f2f3f5;
+}
+.panel .panelList .panelItem .panelItemTitle{
+    font-size: 14px;
+    color: #1d2129;
+}
+.panel .panelList .panelItem .panelItemInfo{
+    font-size: 12px;
+    color: #86909c;
+}
+.panel .panelList .panelItem .panelItemCen {
+    font-size: 12px;
+    color: #86909c;
+    padding: 9px 0;
+}
+.noticeTag{
+    color: #3491fa;
+    background: #e8f7ff;
+    display: inline-block;
+    padding: 2px;
+    margin-right: 14px;
+}

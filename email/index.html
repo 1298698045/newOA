@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1300px">
+    <link rel="stylesheet" href="/static/icon/iconfont.css">
+    <link rel="stylesheet" href="/static/common.css">
+    <link rel="stylesheet" href="/utils/index.min.css">
+    <link rel="stylesheet" href="/static/email.css">
+    <title>邮件首页</title>
+</head>
+<body>
+    <div class="pageWrapper" id="app">
+        <div class="emailWrap">
+            <div class="leftContainer">
+                <div class="leftNavPaneWrap">
+                    <div class="navHead">
+                        <div class="search">
+                            <input type="text" name="treesearch" value="" placeholder="请输入">
+                            <div class="searchIcon">
+                                <i class="iconfont icon-sousuo"></i>
+                            </div>
+                        </div>
+                        <div class="squareBtn">
+                            <i class="iconfont icon-tianjia"></i>
+                        </div>
+                    </div>
+                    <ul class="emailMenuWrap">
+                       <li class="emailItem">
+                            <div class="emailItemRow">
+                                <div class="emailItemTitle">
+                                    <i class="iconfont icon-xiala"></i>
+                                    内部邮件
+                                </div>
+                            </div>
+                            <div class="menuChildren">
+                                <div class="menuChildItem">
+                                    <div class="leftIcon">
+                                        <i class="iconfont icon-zhutizhongxin"></i>
+                                    </div>
+                                    <p class="name">收件箱</p>
+                                    <p class="emailNum">56</p>
+                                </div>
+                            </div>
+                       </li> 
+                    </ul>
+                </div>
+            </div>
+            <div class="rightContainer"></div>
+        </div>
+    </div>
+</body>
+<script src="/utils/jquery.min.js"></script>
+<script src="/utils/vue.js"></script>
+<script src="/utils/index.min.js"></script>
+<script src="/js/detail.js" defer></script>
+<script src="/js/mixin.js"></script>
+<script>
+    var height = $(window).height();
+    $('.emailWrap').css('height', height + 'px')
+    $(window).resize(function () {
+        height = $(window).height();
+        $('.emailWrap').css('height', height + 'px')
+    });
+</script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data:function(){
+            return {
+
+            }
+        },
+        created:function(){
+            
+        },
+        mounted:function(){
+
+        }
+    })
+</script>
+</html>

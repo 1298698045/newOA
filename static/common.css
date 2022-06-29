@@ -717,6 +717,12 @@ input,button{outline: 0;border:none;}
     color: #1d2129;
     font-weight: bold;
 }
+
+.panelWrap .panelHead .leftTitle .descNum{
+    color: #aaaaaa;
+    font-size: 14px;
+}
+
 .panelWrap .panelBody .panelFlexBoxInfoWrap{
     display: flex;
 }
@@ -1015,4 +1021,50 @@ input,button{outline: 0;border:none;}
 .spaceWrap .spaceItem:hover{
     background: #fff;
     color: #4e5969;
+}
+
+
+
+
+.btnTag{
+    width: 42px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+.btnTag.tagWarning{
+    background: #fff3e8;
+    color: #f77234;
+}
+.btnTag.tagPrimary{
+    background: #e8f3ff;
+    color: #165dff;
+}
+/*
+文字tag
+*/
+.textTag{
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 2px;
+    color: #fff;
+    display: inline-block;
+}
+.textTag.textTagHigh{
+    background: #e63e41;
+}
+.textTag.textTagIn{
+    background: #fa8429;
+}
+.dian{
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    border-radius: 50%;
+    background: #165dff;
 }

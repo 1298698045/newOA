@@ -1,0 +1,95 @@
+body{
+    background: #f0f2f6;
+    font-size: 14px;
+}
+.emailWrap{
+    overflow: hidden;
+}
+.leftContainer{
+    height: 100%;
+    float: left;
+}
+.leftNavPaneWrap{
+    width: 220px;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #fff;
+}
+.leftNavPaneWrap .search{
+    margin: 0;
+    flex: 1;
+    margin-right: 8px;
+}
+.leftNavPaneWrap .navHead{
+    display: flex;
+    
+}
+.squareBtn{
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    display: inline-block;
+    background: #165dff;
+    color: #fff;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.squareBtn:hover{
+    background-color: rgb(64,128,255);
+}
+.squareBtn .iconfont{
+    font-size: 12px;
+}
+.emailMenuWrap{
+    margin-top: 10px;
+}
+.emailMenuWrap .emailItem{
+    border-radius: 2px;
+    cursor: pointer;
+}
+.emailMenuWrap .emailItem .emailItemTitle{
+    height: 36px;
+    line-height: 36px;
+    padding: 0 12px;
+    box-sizing: border-box;
+}
+.emailMenuWrap .emailItem .emailItemTitle .iconfont{
+    color: rgba(23,26,29,.6);
+    font-size: 12px;
+}
+.emailMenuWrap .emailItem .emailItemRow:hover{
+    background: #f2f3f5;
+}
+.emailMenuWrap .emailItem .menuChildren .menuChildItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.emailMenuWrap .emailItem .menuChildren .menuChildItem:hover{
+    background: #f2f3f5;
+}
+.emailMenuWrap .emailItem .menuChildren .menuChildItem:hover .name{
+    font-weight: bold;
+}
+.emailMenuWrap .emailItem .menuChildren .menuChildItem.active .name{
+    font-weight: bold;
+    background: #f2f3f5;
+}
+.emailMenuWrap .emailItem .menuChildren .menuChildItem .name{
+    color: #1d2129;
+    flex: 1;
+    padding-left: 14px;
+}
+.emailMenuWrap .emailItem .menuChildren .menuChildItem{
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px 0 24px;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+.emailMenuWrap .emailItem .menuChildren .menuChildItem .emailNum{
+    color: #aaaaaa;
+    font-size: 12px;
+}

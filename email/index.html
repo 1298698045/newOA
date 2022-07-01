@@ -27,56 +27,840 @@
                         </div>
                     </div>
                     <ul class="emailMenuWrap">
-                       <li class="emailItem">
+                       <li class="emailItem" v-for="(item,index) in navList" :key="index">
+                            <div class="emailItemRow" @click="handleOpen(item,index)">
+                                <div class="emailItemTitle">
+                                    <div class="leftIcon">
+                                        <i class="iconfont icon-xiala" :class="{'active':!item.isBook}"  v-if="item.children.length>0"></i>
+                                    </div>
+                                    <span class="name">{{ item.name }}</span>
+                                    <p class="addIcon" v-if="item.isAdd" @click.stop="handleAddTab(item,index)">
+                                        <i class="iconfont icon-tianjia"></i>
+                                    </p>
+                                </div>
+                            </div>
+                            <transition>
+                                <div class="menuChildren" v-if="item.children.length>0 && item.isBook">
+                                    <div class="menuChildItem" v-for="(self,idx) in item.children" :key="idx">
+                                        <div class="leftIcon">
+                                            <i class="iconfont icon-zhutizhongxin"></i>
+                                        </div>
+                                        <p class="name">{{ self.name }}</p>
+                                        <p class="emailNum">
+                                            <span class="num">{{ self.num || ''}}</span>
+                                            <i class="iconfont icon-tianjia"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </transition>
+                            <div class="addTabsWrap" v-if="item.isAddTabs">
+                                <el-input v-model="tabText" :ref="addTabs+index"></el-input>
+                                <div class="rightIcon">
+                                    <span class="radiusIcon" @click.stop="handleConfirm(item,index)">
+                                        <i class="iconfont icon-duigou"></i>
+                                    </span>
+                                    <span class="radiusIcon" @click.stop="handleClose(item,index)">
+                                        <i class="iconfont icon-guanbi"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                       <!-- <li class="emailItem">
                             <div class="emailItemRow">
                                 <div class="emailItemTitle">
-                                    <i class="iconfont icon-xiala"></i>
-                                    内部邮件
-                                </div>
-                            </div>
-                            <div class="menuChildren">
-                                <div class="menuChildItem">
                                     <div class="leftIcon">
-                                        <i class="iconfont icon-zhutizhongxin"></i>
                                     </div>
-                                    <p class="name">收件箱</p>
-                                    <p class="emailNum">56</p>
+                                    <span class="name">标签</span>
+                                    <p class="addIcon" @click.stop="handleAddTab">
+                                        <i class="iconfont icon-tianjia"></i>
+                                    </p>
                                 </div>
                             </div>
-                       </li> 
+                            <div class="addTabsWrap" v-if="isAddTabs">
+                                <el-input v-model="tabText" ref="addTabs"></el-input>
+                                <div class="rightIcon">
+                                    <span class="radiusIcon"></span>
+                                    <span class="radiusIcon"></span>
+                                </div>
+                            </div>
+                        </li> -->
                     </ul>
+                    <div class="progressWrap">
+                        <el-progress :percentage="20" :show-text="false"></el-progress>
+                        <p class="progressText">
+                            24.6G/100G
+                        </p>
+                    </div>
+                </div>
+                <div class="leftNavIconWrap">
+                    <div class="squareBtn"><i class="iconfont icon-tianjia"></i></div>
+                    <div class="navIconBox">
+                        <i class="iconfont icon-sousuo"></i>
+                    </div>
+                    <el-tooltip content="收件箱" :enterable="false" effect="dark" placement="bottom">
+                        <div class="navIconBox">
+                            <i class="iconfont icon-xiala"></i>
+                        </div>
+                    </el-tooltip>
+                    <el-tooltip content="跟进事项" :enterable="false" effect="dark" placement="bottom">
+                        <div class="navIconBox">
+                            <i class="iconfont icon-xiala"></i>
+                        </div>
+                    </el-tooltip>
+                    <el-tooltip content="完成事项" :enterable="false" effect="dark" placement="bottom">
+                        <div class="navIconBox">
+                            <i class="iconfont icon-xiala"></i>
+                        </div>
+                    </el-tooltip>
+                    <el-tooltip content="重要邮件" :enterable="false" effect="dark" placement="bottom">
+                        <div class="navIconBox">
+                            <i class="iconfont icon-xiala"></i>
+                        </div>
+                    </el-tooltip>
+                    <el-tooltip content="群邮件" :enterable="false" effect="dark" placement="bottom">
+                        <div class="navIconBox">
+                            <i class="iconfont icon-xiala"></i>
+                        </div>
+                    </el-tooltip>
+                    <el-tooltip content="未读邮件" :enterable="false" effect="dark" placement="bottom">
+                        <div class="navIconBox">
+                            <i class="iconfont icon-xiala"></i>
+                        </div>
+                    </el-tooltip>
+                    <el-tooltip content="草稿箱" :enterable="false" effect="dark" placement="bottom">
+                        <div class="navIconBox">
+                            <i class="iconfont icon-xiala"></i>
+                        </div>
+                    </el-tooltip>
+                    <el-tooltip content="已发送" :enterable="false" effect="dark" placement="bottom">
+                        <div class="navIconBox">
+                            <i class="iconfont icon-xiala"></i>
+                        </div>
+                    </el-tooltip>
+                    <el-tooltip content="已删除" :enterable="false" effect="dark" placement="bottom">
+                        <div class="navIconBox">
+                            <i class="iconfont icon-xiala"></i>
+                        </div>
+                    </el-tooltip>
+                    <el-tooltip content="邮件文件夹" :enterable="false" effect="dark" placement="bottom">
+                        <div class="navIconBox">
+                            <i class="iconfont icon-xiala"></i>
+                        </div>
+                    </el-tooltip>
+                    <el-tooltip content="标签" :enterable="false" effect="dark" placement="bottom">
+                        <div class="navIconBox">
+                            <i class="iconfont icon-xiala"></i>
+                        </div>
+                    </el-tooltip>
                 </div>
             </div>
-            <div class="rightContainer"></div>
+            <div class="rightContainer">
+                <div class="mailListWrap">
+                    <div class="sanlan"><i class="iconfont icon-xiala"></i></div>
+                    <div class="mailHeader">
+                        <el-tooltip :enterable="false" content="收起文件夹栏" effect="dark" placement="bottom">
+                            <div class="foldIcon">
+                                <i class="iconfont icon-shangyiye"></i>
+                            </div>
+                        </el-tooltip>
+                        <div class="titleBox">
+                            <button class="btnText">
+                                收件箱-全部(95)
+                                <i class="iconfont icon-xiala"></i>
+                            </button>
+                            <div class="dropMenuWapper mailDropWrap">
+                                <div class="dropMenu">
+                                    <div class="dropMenuItem">
+                                        <span class="name">全部邮件</span>
+                                    </div>
+                                    <div class="dropMenuItem">
+                                        <span class="name">未读邮件</span>
+                                    </div>
+                                    <div class="dropMenuItem">
+                                        <span class="name">已读邮件</span>
+                                    </div>
+                                    <div class="dropMenuItem">
+                                        <span class="name">跟进事项</span>
+                                    </div>
+                                    <div class="dropMenuItem">
+                                        <span class="name">完成事项</span>
+                                    </div>
+                                    <div class="dropMenuItem">
+                                        <span class="name">带附件的邮件</span>
+                                    </div>
+                                    <div class="dropMenuItem">
+                                        <span class="name">会话邮件</span>
+                                    </div>
+                                    <div class="dropMenuItem">
+                                        <span class="name">邮件摘要</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rightBtn">
+                            <button class="btnText">
+                                编辑
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mailListContent">
+                        <div class="mailContentItem" v-for="item in 20">
+                            <el-checkbox class="checkbox"></el-checkbox>
+                            <el-tooltip content="点击标记未读" :enterable="false" effect="dark" placement="bottom">
+                                <span class="readElement"></span>
+                            </el-tooltip>
+                            <div class="avatar">
+                                <i class="iconfont icon-morentouxiang"></i>
+                            </div>
+                            <div class="rightInfo">
+                                <div class="nameRow">
+                                    <span class="name">张碧瓷</span>
+                                    <el-tooltip :enterable="false" content="2021年12月27日(星期二) 09:23" effect="dark" placement="bottom">
+                                        <div class="timer">
+                                            <i class="iconfont icon-fujian"></i>
+                                            5月21日
+                                        </div>
+                                    </el-tooltip>
+                                </div>
+                                <el-tooltip :enterable="false" content="选派相关科室人员到“三甲”以上医院专业进" effect="dark" placement="bottom">
+                                    <div class="theme rowEllipsis">
+                                        选派相关科室人员到“三甲”以上医院专业进
+                                    </div>
+                                </el-tooltip>
+                                <div class="desc rowEllipsis">
+                                    融云·全球互联网通信云Hi，北京凤凰世纪科技有
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="mailContentItem">
+                            <el-tooltip content="收起文件夹栏" effect="dark" placement="bottom">
+                                <span class="readElement active"></span>
+                            </el-tooltip>
+                            <div class="avatar">
+                                <i class="iconfont icon-morentouxiang"></i>
+                            </div>
+                            <div class="rightInfo">
+                                <div class="nameRow">
+                                    <span class="name">张碧瓷</span>
+                                    <el-tooltip :enterable="false" content="2021年12月27日(星期二) 09:23" effect="dark" placement="bottom">
+                                        <div class="timer">
+                                            <i class="iconfont icon-fujian"></i>
+                                            5月21日
+                                        </div>
+                                    </el-tooltip>
+                                </div>
+                                <div class="theme rowEllipsis">
+                                    选派相关科室人员到“三甲”以上医院专业进选派相关科室人员到“三甲”以上医院专业进
+                                </div>
+                                <div class="desc rowEllipsis">
+                                    融云·全球互联网通信云Hi，北京凤凰世纪科技有rowEllipsis
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="mailListContentRow">
+                        <div class="mailContentItem" v-for="item in 20">
+                            <el-checkbox class="checkbox"></el-checkbox>
+                            <el-tooltip content="点击标记未读" :enterable="false" effect="dark" placement="bottom">
+                                <span class="readElement"></span>
+                            </el-tooltip>
+                            <div class="avatar">
+                                <i class="iconfont icon-morentouxiang"></i>
+                            </div>
+                            <div class="rightInfo">
+                                <div class="nameRow">
+                                    <span class="name">张碧瓷</span>
+                                </div>
+                                <el-tooltip :enterable="false" content="选派相关科室人员到“三甲”以上医院专业进" effect="dark" placement="bottom">
+                                    <div class="theme rowEllipsis">
+                                        选派相关科室人员到“三甲”以上医院专业进
+                                    </div>
+                                </el-tooltip>-
+                                <div class="desc rowEllipsis">
+                                    融云·全球互联网通信云Hi，北京凤凰世纪科技有
+                                </div>
+                            </div>
+                            <div class="rightRow">
+                                <i class="iconfont icon-xiala"></i>
+                                <el-tooltip :enterable="false" content="2021年12月27日(星期二) 09:23" effect="dark" placement="bottom">
+                                    <div class="timer">
+                                        <i class="iconfont icon-fujian"></i>
+                                        5月21日
+                                    </div>
+                                </el-tooltip>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mailContainerWrap inboxContainer">
+                    <div class="sanlan">
+                        <i class="iconfont icon-xiala"></i>
+                    </div>
+                    <div class="mailSubject">
+                        <div class="title rowEllipsis">
+                            选派相关科室人员到“三甲”以上医院进修、培训学习选派相关科室人员到“三甲”以上医院进修、培训学习
+                        </div>
+                        <div class="emailOption">
+                            <button class="btn white">回复</button>
+                            <button class="btn white">转发</button>
+                            <div class="move">
+                                <button class="btn white move" @click="handleBtnMove">
+                                    移动
+                                </button>
+                                <div class="dropMenuWapper moveDrop" v-if="isMoveModal">
+                                    <div class="dropMenu">
+                                        <div class="dropMenuItem">
+                                            <span class="name">收件箱</span>
+                                            <span class="num">226</span>
+                                        </div>
+                                        <div class="dropMenuItem">
+                                            <span class="name">已发送</span>
+                                            <span class="num">226</span>
+                                        </div>
+                                        <div class="dropMenuItem">
+                                            <span class="name">已删除</span>
+                                            <span class="num">226</span>
+                                        </div>
+                                    </div>
+                                    <div class="dropOptionList">
+                                        <div class="dropOptionItem">
+                                            <span class="name">邮件文件夹</span>
+                                            <span class="rightIcon">
+                                                <i class="iconfont icon-tianjia"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn white">删除</button>
+                            <div class="more">
+                                <button class="btn square">
+                                    <i class="iconfont icon-xiala"></i>
+                                </button>
+                                <div class="dropMenuWapper moreDrop">
+                                    <div class="dropOptionList">
+                                        <div class="dropOptionItem">
+                                            <div class="leftIconRow">
+                                                <span class="icon">
+                                                    <i class="iconfont icon-xiala"></i>
+                                                </span>
+                                                设为未读邮件
+                                            </div>
+                                        </div>
+                                        <div class="dropOptionItem">
+                                            <div class="leftIconRow">
+                                                <span class="icon">
+                                                    <i class="iconfont icon-xiala"></i>
+                                                </span>
+                                                设为重要邮件
+                                            </div>
+                                        </div>
+                                        <div class="dropOptionItem">
+                                            <div class="leftIconRow">
+                                                <span class="icon">
+                                                    <i class="iconfont icon-xiala"></i>
+                                                </span>
+                                                设为跟进事项
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropOptionList">
+                                        <div class="dropOptionItem">
+                                            <span class="name">回复</span>
+                                        </div>
+                                        <div class="dropOptionItem">
+                                            <span class="name">全部回复</span>
+                                        </div>
+                                        <div class="dropOptionItem">
+                                            <span class="name">全部回复（带附件）</span>
+                                        </div>
+                                    </div>
+                                    <div class="dropOptionList">
+                                        <div class="dropOptionItem">
+                                            <span class="name">转发</span>
+                                        </div>
+                                        <div class="dropOptionItem">
+                                            <span class="name">以附件转发</span>
+                                        </div>
+                                        <div class="dropOptionItem">
+                                            <span class="name">给TA们发信</span>
+                                        </div>
+                                    </div>
+                                    <div class="dropOptionList">
+                                        <div class="dropOptionItem">
+                                            <span class="name">删除</span>
+                                        </div>
+                                        <div class="dropOptionItem">
+                                            <span class="name">移动</span>
+                                            <span class="rightIcon">
+                                                <i class="iconfont icon-xiala rotate90deg"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn square">
+                                <i class="iconfont icon-xiala"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mailContentView">
+                        <div class="formPeopleWrap">
+                            <div class="avatar">
+                                <i class="iconfont icon-morentouxiang"></i>
+                            </div>
+                            <div class="emailInfo">
+                                <div class="nameRow">
+                                    <el-tooltip content="点击标记未读" :enterable="false" effect="dark" placement="bottom">
+                                        <span class="readElement"></span>
+                                    </el-tooltip>
+                                    <span class="name">张碧瓷</span>
+                                </div>
+                                <div class="rowLabel">
+                                    <span class="label">收件人：</span>
+                                    <div class="fullNameList">
+                                        <span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span>
+                                        <span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                        <span class="emailFullName">张某</span>
+                                    </div>
+                                </div>
+                                <div class="rowLabel">
+                                    <span class="label">抄&nbsp;&nbsp;&nbsp;&nbsp;送：</span>
+                                    <div class="fullNameList">
+                                        <span class="emailFullName">赵丽满</span>
+                                    </div>
+                                </div>
+                                <div class="emailTitleBox" v-show="isEmailTitle">
+                                    选派相关科室人员到“三甲”以上医院进修、培训学习！
+                                </div>
+                                <div class="fileDesc">
+                                    共2个附件（ 选派相关科室人员到“三甲”以上医院进修、培训学习.docx ）
+                                    <span class="linkText">查看附件</span>
+                                </div>
+                            </div>
+                            <div class="emailOther">
+                                <div class="timerRow">
+                                    12月21日 09:23
+                                </div>
+                                <div class="detailText">
+                                    <el-tooltip content="展开详情信息" :enterable="false" effect="dark" placement="bottom">
+                                        <button class="btnText" @click="handleClickText">
+                                            详情
+                                            <i class="iconfont icon-xiala" :class="{'active':isEmailTitle}"></i>
+                                        </button>
+                                    </el-tooltip>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inboxWrap">
+                            <div class="inboxBd">
+                                <div class="richText">
+                                    为了加快急诊科人才队伍建设，提高卫技人员*素质,加强医院医疗质量管理及医疗质量内涵建设，以满足现代社会对医院发展的需求，确保医疗安全，结合我科实际，目前科室医疗急诊抢救技术不能满足本县发展的需求，经科室研究确定，制定急诊科今年继续医学教育计划如下：
+                                    一、积极支持在职人员参加不脱产大学本、专科学历教肓，不断提高急诊科医护人员的*素养和基础知识水平。
+                                    二、选派院内相关科室人员到“三*”以上医院进修学习。具体安排如下：
+                                    1、选派各*组技术骨干到上级医院进修学习，计划如下：选派杨汝义到贵阳医学院附属医院心内科进修学习半年。
+                                    2、选派沈妮护士到贵阳医学院附属医院进修学习急诊护理，
+                                    3、选派黄晓霞到贵阳医学院附属医院进修学习急诊专科半年。
+                                    三、加强急救人才培训,对全体医师以下人员进行*知识考核与培训,对住院病区轮转到急诊科的医护人员有针对*的急诊急救能力培训。
+                                </div>
+                                <div class="inboxFileWrap">
+                                    <div class="inboxFileHead">
+                                        <i class="iconfont "></i>
+                                        附件2个（323KB）
+                                        <span class="shu">|</span>
+                                        <span class="linkText">打包下载</span>
+                                    </div>
+                                    <div class="inboxFileList">
+                                        <div class="inboxFileItem" v-for="item in 10">
+                                            <div class="leftImg">
+                                                <img src="" alt="">
+                                            </div>
+                                            <div class="rightFileInfo">
+                                                <div class="fileName rowEllipsis">
+                                                    1_banner_3.jpg1_banner_3.jpg1_banner_3.jpg1_banner_3.jpg
+                                                </div>
+                                                <div class="fileSize">5kb</div>
+                                                <div class="fileOptionShow">
+                                                    <div class="btns">
+                                                        <el-tooltip content="保存到优盘" :enterable="false" effect="dark" placement="bottom">
+                                                            <button class="btn square default">
+                                                                <i class="iconfont icon-xiala"></i>
+                                                            </button>
+                                                        </el-tooltip>
+                                                        <el-tooltip content="预览" :enterable="false" effect="dark" placement="bottom">
+                                                            <button class="btn square default">
+                                                                <i class="iconfont icon-xiala"></i>
+                                                            </button>
+                                                        </el-tooltip>
+                                                        <el-tooltip content="下载" :enterable="false" effect="dark" placement="bottom">
+                                                            <button class="btn square default">
+                                                                <i class="iconfont icon-xiala"></i>
+                                                            </button>
+                                                        </el-tooltip>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧弹出框 -->
+                <div class="rightModal">
+                    <div class="mailContainerWrap">
+                        <div class="mailSubject">
+                            <div class="title rowEllipsis">
+                                选派相关科室人员到“三甲”以上医院进修、培训学习选派相关科室人员到“三甲”以上医院进修、培训学习
+                            </div>
+                            <div class="emailOption">
+                                <button class="btn white">回复</button>
+                                <button class="btn white">转发</button>
+                                <div class="move" @click="handleBtnMove">
+                                    <button class="btn white move">
+                                        移动
+                                    </button>
+                                    <div class="dropMenuWapper moveDrop" v-if="isMoveModal">
+                                        <div class="dropMenu">
+                                            <div class="dropMenuItem">
+                                                <span class="name">收件箱</span>
+                                                <span class="num">226</span>
+                                            </div>
+                                            <div class="dropMenuItem">
+                                                <span class="name">已发送</span>
+                                                <span class="num">226</span>
+                                            </div>
+                                            <div class="dropMenuItem">
+                                                <span class="name">已删除</span>
+                                                <span class="num">226</span>
+                                            </div>
+                                        </div>
+                                        <div class="dropOptionList">
+                                            <div class="dropOptionItem">
+                                                <span class="name">邮件文件夹</span>
+                                                <span class="rightIcon">
+                                                    <i class="iconfont icon-tianjia"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn white">删除</button>
+                                <button class="btn square">
+                                    <i class="iconfont icon-xiala"></i>
+                                </button>
+                                <button class="btn square" id="modalClose">
+                                    <i class="iconfont icon-guanbi"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mailContentView">
+                            <div class="formPeopleWrap">
+                                <div class="avatar">
+                                    <i class="iconfont icon-morentouxiang"></i>
+                                </div>
+                                <div class="emailInfo">
+                                    <div class="nameRow">
+                                        <el-tooltip content="点击标记未读" :enterable="false" effect="dark" placement="bottom">
+                                            <span class="readElement"></span>
+                                        </el-tooltip>
+                                        <span class="name">张碧瓷</span>
+                                    </div>
+                                    <div class="rowLabel">
+                                        <span class="label">收件人：</span>
+                                        <div class="fullNameList">
+                                            <span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span>
+                                            <span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span><span class="emailFullName">赵丽满</span>
+                                            <span class="emailFullName">张某</span>
+                                        </div>
+                                    </div>
+                                    <div class="rowLabel">
+                                        <span class="label">抄&nbsp;&nbsp;&nbsp;&nbsp;送：</span>
+                                        <div class="fullNameList">
+                                            <span class="emailFullName">赵丽满</span>
+                                        </div>
+                                    </div>
+                                    <div class="emailTitleBox" v-show="isEmailTitle">
+                                        选派相关科室人员到“三甲”以上医院进修、培训学习！
+                                    </div>
+                                    <div class="fileDesc">
+                                        共2个附件（ 选派相关科室人员到“三甲”以上医院进修、培训学习.docx ）
+                                        <span class="linkText">查看附件</span>
+                                    </div>
+                                </div>
+                                <div class="emailOther">
+                                    <div class="timerRow">
+                                        12月21日 09:23
+                                    </div>
+                                    <div class="detailText">
+                                        <el-tooltip content="展开详情信息" :enterable="false" effect="dark" placement="bottom">
+                                            <button class="btnText" @click="handleClickText">
+                                                详情
+                                                <i class="iconfont icon-xiala" :class="{'active':isEmailTitle}"></i>
+                                            </button>
+                                        </el-tooltip>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inboxWrap">
+                                <div class="inboxBd">
+                                    <div class="richText">
+                                        为了加快急诊科人才队伍建设，提高卫技人员*素质,加强医院医疗质量管理及医疗质量内涵建设，以满足现代社会对医院发展的需求，确保医疗安全，结合我科实际，目前科室医疗急诊抢救技术不能满足本县发展的需求，经科室研究确定，制定急诊科今年继续医学教育计划如下：
+                                        一、积极支持在职人员参加不脱产大学本、专科学历教肓，不断提高急诊科医护人员的*素养和基础知识水平。
+                                        二、选派院内相关科室人员到“三*”以上医院进修学习。具体安排如下：
+                                        1、选派各*组技术骨干到上级医院进修学习，计划如下：选派杨汝义到贵阳医学院附属医院心内科进修学习半年。
+                                        2、选派沈妮护士到贵阳医学院附属医院进修学习急诊护理，
+                                        3、选派黄晓霞到贵阳医学院附属医院进修学习急诊专科半年。
+                                        三、加强急救人才培训,对全体医师以下人员进行*知识考核与培训,对住院病区轮转到急诊科的医护人员有针对*的急诊急救能力培训。
+                                    </div>
+                                    <div class="inboxFileWrap">
+                                        <div class="inboxFileHead">
+                                            <i class="iconfont "></i>
+                                            附件2个（323KB）
+                                            <span class="shu">|</span>
+                                            <span class="linkText">打包下载</span>
+                                        </div>
+                                        <div class="inboxFileList">
+                                            <div class="inboxFileItem" v-for="item in 10">
+                                                <div class="leftImg">
+                                                    <img src="" alt="">
+                                                </div>
+                                                <div class="rightFileInfo">
+                                                    <div class="fileName rowEllipsis">
+                                                        1_banner_3.jpg1_banner_3.jpg1_banner_3.jpg1_banner_3.jpg
+                                                    </div>
+                                                    <div class="fileSize">5kb</div>
+                                                    <div class="fileOptionShow">
+                                                        <div class="btns">
+                                                            <el-tooltip content="保存到优盘" :enterable="false" effect="dark" placement="bottom">
+                                                                <button class="btn square default">
+                                                                    <i class="iconfont icon-xiala"></i>
+                                                                </button>
+                                                            </el-tooltip>
+                                                            <el-tooltip content="预览" :enterable="false" effect="dark" placement="bottom">
+                                                                <button class="btn square default">
+                                                                    <i class="iconfont icon-xiala"></i>
+                                                                </button>
+                                                            </el-tooltip>
+                                                            <el-tooltip content="下载" :enterable="false" effect="dark" placement="bottom">
+                                                                <button class="btn square default">
+                                                                    <i class="iconfont icon-xiala"></i>
+                                                                </button>
+                                                            </el-tooltip>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footerEdit">
+            
         </div>
     </div>
 </body>
 <script src="/utils/jquery.min.js"></script>
 <script src="/utils/vue.js"></script>
 <script src="/utils/index.min.js"></script>
-<script src="/js/detail.js" defer></script>
 <script src="/js/mixin.js"></script>
 <script>
-    var height = $(window).height();
-    $('.emailWrap').css('height', height + 'px')
-    $(window).resize(function () {
-        height = $(window).height();
+    $(function(){
+        var height = $(window).height();
+        var footerEditHeight = $('.footerEdit').height();
+        if(app.isEdit){
+            height = height - footerEditHeight;
+        }
         $('.emailWrap').css('height', height + 'px')
-    });
+        var inboxHead = $('.formPeopleWrap').height() + 30;
+        var mailContentView = $('.mailContentView').height();
+        var inboxBdHeight = mailContentView - inboxHead;
+        $('.inboxWrap .inboxBd').css('height',inboxBdHeight+'px')
+        
+        $(window).resize(function () {
+            height = $(window).height();
+            if (app.isEdit) {
+                height = height - footerEditHeight;
+            }
+            $('.emailWrap').css('height', height + 'px')
+            inboxHead = $('.formPeopleWrap').height() + 30;
+            mailContentView = $('.mailContentView').height();
+            inboxBdHeight = mailContentView - inboxHead;
+            $('.inboxWrap .inboxBd').css('height', inboxBdHeight + 'px')
+        });
+        $('.inboxContainer .sanlan').click(function(){
+            $('.inboxContainer').hide();
+            $('.mailListWrap .sanlan').show();
+            $('.mailListWrap').css('width','100%');
+            $('.mailListContent').hide();
+            $('.mailListContentRow').show();
+        })
+        $('.mailListWrap .sanlan').click(function () {
+            $(this).hide();
+            $('.inboxContainer').show();
+            $('.mailListContent').show();
+            $('.mailListContentRow').hide();
+            $('.mailListWrap').css('width', '358px');
+        })
+        $('#modalClose').click(function(){
+            $('.rightModal').hide();
+        })
+        $('.mailListContentRow').click(function(){
+            $('.rightModal').show();
+        })
+        $('.rightContainer .mailHeader .foldIcon').click(function(){
+            $(this).find('.iconfont').toggleClass('active');
+            $('.leftContainer .leftNavPaneWrap').toggle();
+            $('.leftContainer .leftNavIconWrap').toggle();
+        })
+        $(".emailOption .more button").click(function(e){
+            e.stopPropagation();
+            $('.emailOption .more .moreDrop').toggle();
+        })
+        $(document).click(function(){
+            $('.emailOption .more .moreDrop').hide();
+        })
+        $('.emailOption .more .moreDrop .dropOptionItem').click(function(e){
+            e.stopPropagation();
+            $('.emailOption .more .moreDrop').hide();
+        })
+    })
 </script>
 <script>
     var app = new Vue({
         el: '#app',
         data:function(){
             return {
-
+                navList: [
+                    {
+                        name: '内部邮件',
+                        isBook: true,
+                        children: [
+                            {
+                                name: '收件箱',
+                                num: 1
+                            },
+                            {
+                                name: '跟进事项',
+                                num: 1
+                            }
+                        ]
+                    },
+                    {
+                        name: '邮箱文件夹',
+                        isBook: true,
+                        isAdd: true,
+                        isAddTabs: false,
+                        children: [
+                            {
+                                name: '草稿箱[12]',
+                                num: 1
+                            },
+                            {
+                                name: '已发送',
+                                num: 1
+                            },
+                            {
+                                name: '已删除',
+                                num: 1
+                            }
+                        ]
+                    },
+                    {
+                        name: '标签',
+                        isBook: false,
+                        isAdd: true,
+                        isAddTabs: false,
+                        children: []
+                    }
+                ],
+                isAddTabs: false,
+                tabText:'',
+                addTabs:'addTabs_',
+                isEmailTitle: false,
+                isMoveModal: false,
+                isEdit: true
             }
         },
         created:function(){
             
         },
-        mounted:function(){
-
+        methods: {
+            handleOpen: function (item, index) {
+                item.isBook = !item.isBook;
+                item.isAddTabs = false;
+                var that = this;
+                this.filterList(item)
+            },
+            handleAddTab:function(item,index){
+                console.log('添加')
+                if(item.children.length>0){
+                    item.isBook = true
+                }
+                item.isAddTabs = true;
+                var that = this;
+                this.$nextTick(function(){
+                    that.$refs[that.addTabs+index][0].focus();
+                })
+                this.filterList(item)
+            },
+            handleConfirm:function(item,index){
+                item.isAddTabs = false;
+            },
+            handleClose:function(item,index){
+                item.isAddTabs = false;
+            },
+            filterList:function(item){
+                var that = this;
+                this.navList.forEach(function (v) {
+                    if (v.name != item.name) {
+                        that.$set(v, 'isAddTabs', false)
+                    }
+                })
+            },
+            // 右侧详情点击
+            handleClickText:function(){
+                this.isEmailTitle = !this.isEmailTitle;
+            },
+            handleBtnMove:function(){
+                this.isMoveModal = !this.isMoveModal;
+            }
         }
     })
 </script>

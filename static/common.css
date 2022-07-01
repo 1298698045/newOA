@@ -25,6 +25,9 @@ textarea{
 ul{
     list-style: none;
 }
+.font18size{
+    font-size: 18px;
+}
 input,button{outline: 0;border:none;}
 /* Switch开关样式 */
 .switch[type='checkbox'].switch {
@@ -94,6 +97,25 @@ input,button{outline: 0;border:none;}
     border-radius: 2px;
     padding: 0 15px;
     cursor: pointer;
+    box-sizing: border-box;
+}
+.btn.square{
+    width: 32px;
+    background: #fff;
+    color: #4e5969;
+    border: 1px solid #e4e8eb;
+    padding: 0;
+}
+.btn.square .iconfont{
+    display: inline-block;
+}
+.btn.square.default{
+    border: none;
+    background: transparent;
+}
+.btn.square.default:hover{
+    color: #4e5969;
+    background: rgb(229,230,235);
 }
 .btn:hover{
     color: rgb(78,89,105);
@@ -108,6 +130,14 @@ input,button{outline: 0;border:none;}
 .btn.primary{
     background: #165dff;
     color: #fff;
+}
+.btn.white{
+    background: #fff;
+    color: #4e5969;
+    border: 1px solid #e4e8eb;
+}
+.btn.white:hover{
+    background-color: #e5e6eb;
 }
 /* 单行文字 */
 .rowEllipsis{
@@ -328,6 +358,7 @@ input,button{outline: 0;border:none;}
     overflow: auto;
     cursor: pointer;
     display: none;
+    z-index: 99;
 }
 .dropMenuWapper .dropMenu .dropMenuItem{
     font-size: 14px;
@@ -351,7 +382,25 @@ input,button{outline: 0;border:none;}
     padding-left: 14px;
     padding-right: 14px;
 }
-
+.dropOptionList{
+    margin-top: 4px;
+    border-top: 1px solid #e5e6eb;
+}
+.dropOptionList .dropOptionItem{
+    line-height: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px 0 12px;
+    margin-top: 4px;
+    color: #4e5969;
+}
+.dropOptionList .dropOptionItem:hover{
+    color:#165dff;
+    background: #f2f3f5;
+}
+.dropOptionList .dropOptionItem .rightIcon .iconfont{
+    font-size: 12px;
+}
 /* 公共头部header */
 .PageHeader{
     width: 100%;
@@ -882,7 +931,9 @@ input,button{outline: 0;border:none;}
 .btnText:hover{
     background: #f2f3f5;
 }
-
+.btnText .iconfont{
+    vertical-align: middle;
+}
 /* 圆角标签tab切换 */
 .tabList{
     display: flex;
@@ -1067,4 +1118,22 @@ input,button{outline: 0;border:none;}
     display: inline-block;
     border-radius: 50%;
     background: #165dff;
+}
+.linkText{
+    color: #165dff;
+    display: inline-block;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+}
+.linkText:hover{
+    border-color: #165dff;
+}
+.shu{
+    color: #e4e8eb;
+    padding: 0 9px;
+}
+/*旋转*/
+.rotate90deg{
+    transform: rotate(-90deg);
+    display: inline-block;
 }

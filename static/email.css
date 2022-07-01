@@ -703,3 +703,15 @@ body{
     background: #fff;
     z-index: 99;
 }
+.footerEdit .footerEditBox{
+    padding: 8px 0;
+    box-sizing: border-box;
+    padding-left: 15%;
+}
+.footerEdit .footerEditBox .text{
+    color: #4e5969;
+    padding: 0 25px;
+}
+.footerEdit .footerEditBox .el-checkbox__label{
+    color: #1d2129;
+}

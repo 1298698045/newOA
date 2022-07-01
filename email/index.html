@@ -198,14 +198,14 @@
                             </div>
                         </div>
                         <div class="rightBtn">
-                            <button class="btnText">
-                                编辑
+                            <button class="btnText" @click="handleEditEmail">
+                                {{isEdit ? '取消' : '编辑'}}
                             </button>
                         </div>
                     </div>
                     <div class="mailListContent">
                         <div class="mailContentItem" v-for="item in 20">
-                            <el-checkbox class="checkbox"></el-checkbox>
+                            <el-checkbox class="checkbox" v-model="checkbox" @change="changeCheckbox"></el-checkbox>
                             <el-tooltip content="点击标记未读" :enterable="false" effect="dark" placement="bottom">
                                 <span class="readElement"></span>
                             </el-tooltip>
@@ -691,8 +691,17 @@
                 </div>
             </div>
         </div>
-        <div class="footerEdit">
-            
+        <div class="footerEdit" v-show="isEdit">
+            <div class="footerEditBox">
+                <el-checkbox>全选</el-checkbox>
+                <span class="text">已选1项</span>
+                <button class="btn">删除</button>
+                <button class="btn">移动</button>
+                <button class="btn">标记星标</button>
+                <button class="btn">标为已读</button>
+                <button class="btn">以附件转发</button>
+                <button class="btn" @click="cancelEdit">取消</button>
+            </div>
         </div>
     </div>
 </body>
@@ -701,28 +710,22 @@
 <script src="/utils/index.min.js"></script>
 <script src="/js/mixin.js"></script>
 <script>
-    $(function(){
+    function watchHeight(){
         var height = $(window).height();
         var footerEditHeight = $('.footerEdit').height();
-        if(app.isEdit){
+        if (app.isEdit) {
             height = height - footerEditHeight;
         }
         $('.emailWrap').css('height', height + 'px')
         var inboxHead = $('.formPeopleWrap').height() + 30;
         var mailContentView = $('.mailContentView').height();
         var inboxBdHeight = mailContentView - inboxHead;
-        $('.inboxWrap .inboxBd').css('height',inboxBdHeight+'px')
-        
+        $('.inboxWrap .inboxBd').css('height', inboxBdHeight + 'px')
+    }
+    $(function(){
+        watchHeight();
         $(window).resize(function () {
-            height = $(window).height();
-            if (app.isEdit) {
-                height = height - footerEditHeight;
-            }
-            $('.emailWrap').css('height', height + 'px')
-            inboxHead = $('.formPeopleWrap').height() + 30;
-            mailContentView = $('.mailContentView').height();
-            inboxBdHeight = mailContentView - inboxHead;
-            $('.inboxWrap .inboxBd').css('height', inboxBdHeight + 'px')
+            watchHeight();
         });
         $('.inboxContainer .sanlan').click(function(){
             $('.inboxContainer').hide();
@@ -815,13 +818,30 @@
                 addTabs:'addTabs_',
                 isEmailTitle: false,
                 isMoveModal: false,
-                isEdit: true
+                isEdit: false,
+                checkbox:false
             }
         },
         created:function(){
             
         },
+        watch:{
+            isEdit(val,oldVal){
+                console.log(val,'===')
+                watchHeight();
+            }
+        },
         methods: {
+            changeCheckbox:function(e){
+                this.isEdit = e;
+            },
+            handleEditEmail:function(){
+                this.isEdit = !this.isEdit;
+            },
+            // 取消编辑
+            cancelEdit:function(){
+                this.isEdit = false;
+            },
             handleOpen: function (item, index) {
                 item.isBook = !item.isBook;
                 item.isAddTabs = false;

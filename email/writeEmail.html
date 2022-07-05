@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1300px">
+    <link rel="stylesheet" href="/static/icon/iconfont.css">
+    <link rel="stylesheet" href="/static/common.css">
+    <link rel="stylesheet" href="/utils/index.min.css">
+    <link rel="stylesheet" href="/static/whiteEmail.css">
+    <title>写邮件</title>
+</head>
+<body>
+    <div class="pageWraper" id="app">
+        <div class="whitemailHeader" ref="header">
+            <div class="tabContainer">
+                <div class="tabList">
+                    <div class="tab" :class="{active:current==0}" @click="handleTab(0)">
+                        <div class="tabHover">
+                            <span class="tabText">
+                                普通邮件
+                            </span>
+                        </div>
+                    </div>
+                    <div class="tab" :class="{active:current==1}" @click="handleTab(1)">
+                        <div class="tabHover">
+                            <span class="tabText">
+                                群邮件
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="whitemailCenter" :style="{height:centerHeight+'px'}">
+            <div class="containerWrap">
+                <div class="leftContainer">
+                    <div class="leftBd">
+                        <div class="formWrap">
+                            <div ref="form">
+                                <el-form ref="emailForm" :model="form" class="emailForm" label-width="80px" size="mini">
+                                    <el-form-item class="formItem active" label="收件人">
+                                        <el-select v-model="form.addressee" remote :multiple="true"
+                                         filterable placeholder="请选择活动区域" class="inpWidth"
+                                         style="width:calc(100% - 80px);"
+                                         >
+                                            <el-option label="区域一" value="shanghai"></el-option>
+                                            <el-option label="区域二" value="beijing"></el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                    <el-form-item class="formItem" label="抄　送">
+                                        <el-select v-model="form.cc" remote :multiple="true" style="width:calc(100% - 80px);" filterable placeholder="请选择活动区域" class="inpWidth">
+                                            <el-option label="区域一" value="shanghai"></el-option>
+                                            <el-option label="区域二" value="beijing"></el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                    <div class="addText">
+                                        <span class="text">
+                                            删除抄送
+                                        </span>
+                                        -   
+                                        <span class="text">
+                                            删除抄送
+                                        </span>
+                                    </div>
+                                    <el-form-item class="formItem" label="主　题">
+                                        <el-input v-model="form.theme" class="inpWidth" style="width:calc(100% - 80px);"></el-input>
+                                    </el-form-item>
+                                </el-form>
+                            </div>
+                            <div class="filesWrap" ref="files">
+                                <div class="selectFile">
+                                    <span class="text">
+                                        添加附件(4GB)
+                                    </span>
+                                    <span class="arrowIcon">
+                                        <i class="iconfont icon-xiala"></i>
+                                    </span>
+                                    <div class="dropMenuWapper">
+                                        <div class="dropMenu">
+                                            <div class="dropMenuItem"><span class="name">添加超大附件</span></div>
+                                            <div class="dropMenuItem"><span class="name">从网盘选择</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="inboxFileList">
+                                    <div class="inboxFileItem">
+                                        <div class="leftImg">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="rightFileInfo">
+                                            <div class="fileName rowEllipsis">
+                                                1_banner_3.jpg1_banner_3.jpg1_banner_3.jpg1_banner_3.jpg
+                                            </div>
+                                            <div class="fileSize">5kb</div>
+                                            <div class="fileOptionShow">
+                                                <div class="btns">
+                                                    <el-tooltip content="保存到优盘" :enterable="false" effect="dark" placement="bottom">
+                                                        <button class="btn square default">
+                                                            <i class="iconfont icon-xiala"></i>
+                                                        </button>
+                                                    </el-tooltip>
+                                                    <el-tooltip content="预览" :enterable="false" effect="dark" placement="bottom">
+                                                        <button class="btn square default">
+                                                            <i class="iconfont icon-xiala"></i>
+                                                        </button>
+                                                    </el-tooltip>
+                                                    <el-tooltip content="下载" :enterable="false" effect="dark" placement="bottom">
+                                                        <button class="btn square default">
+                                                            <i class="iconfont icon-xiala"></i>
+                                                        </button>
+                                                    </el-tooltip>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="editor" :style="{height:editorHeight+'px'}">
+
+                            </div>
+                            <div class="checkWrap" ref="check">
+                                <el-checkbox size="mini">短信</el-checkbox>
+                                <el-checkbox size="mini">已读回执</el-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rightContainer">
+                    <div class="search">
+                        <input type="text" name="treesearch" value="" placeholder="请输入">
+                        <div class="searchIcon">
+                            <i class="iconfont icon-sousuo"></i>
+                        </div>
+                    </div>
+                    <div class="treePeopleWrap">
+                        <el-tree class="treePeople" :data="latelyTreeData" :props="defaultProps" :render-content="renderContent" @node-click="handleNodeClick"></el-tree>
+                        <el-tree class="treePeople" :data="deptTreeData" :props="defaultProps" :render-content="renderContent" @node-click="handleNodeClick"></el-tree>
+                        <el-tree class="treePeople" :data="groupTreeData" :props="defaultProps" :render-content="renderContent"
+                            @node-click="handleNodeClick"></el-tree>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="writeFooter" ref="footer">
+            <div class="footerOption">
+                <button class="btn primary">发送</button>
+                <button class="btn white">存草稿</button>
+                <button class="btn white">取消</button>
+                <span class="userName">张某某</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/utils/jquery.min.js"></script>
+<script src="/utils/vue.js"></script>
+<script src="/utils/index.min.js"></script>
+<script src="/js/mixin.js"></script>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:function(){
+            return {
+                centerHeight: 0,
+                form:{
+                    addressee:'',
+                    cc:'',
+                    theme: ''
+                },
+                editorHeight:0,
+                current:0,
+                deptTreeData: [{
+                    label: '一级 1',
+                    children: [{
+                        label: '二级 1-1',
+                        children: [{
+                            label: '三级 1-1-1'
+                        }]
+                    }]
+                }, {
+                    label: '一级 2',
+                    children: [{
+                        label: '二级 2-1',
+                        children: [{
+                            label: '三级 2-1-1'
+                        }]
+                    }, {
+                        label: '二级 2-2',
+                        children: [{
+                            label: '三级 2-2-1'
+                        }]
+                    }]
+                }, {
+                    label: '一级 3',
+                    children: [{
+                        label: '二级 3-1',
+                        children: [{
+                            label: '三级 3-1-1'
+                        }]
+                    }, {
+                        label: '二级 3-2',
+                        children: [{
+                            label: '三级 3-2-1',
+                            fullName: '123'
+                        }]
+                    }]
+                }],
+                defaultProps: {
+                    children: 'children',
+                    label: 'label'
+                },
+                latelyTreeData:[
+                    {
+                        label: '二级 3-2',
+                        children: [{
+                            label: '三级 3-2-1',
+                            fullName: '123'
+                        }]
+                    }
+                ],
+                groupTreeData: [
+                    {
+                        label: '二级 3-2',
+                        children: [{
+                            label: '三级 3-2-1',
+                            fullName: '123'
+                        }]
+                    }
+                ]
+            }
+        },
+        mounted:function() {
+        
+        },
+        created:function() {
+            this.getHegith();
+            window.addEventListener('resize', this.getHegith)
+        },
+        methods: {
+            renderContent:function(h, {node, data, store} ){
+                if (data.fullName) {
+                    return h("span", {
+                        class: 'leftSpan',
+                        domProps: {
+                            innerHTML: data.fullName
+                        }
+                    })
+                }else {
+                    return h("span", {
+                        class: 'leftSpan',
+                        domProps: {
+                            innerHTML: data.label
+                        }
+                    })
+                }
+            },
+            handleTab:function(index){
+                this.current = index;
+            },
+            getHegith(){
+                var that = this;
+                this.$nextTick(function(){
+                    that.centerHeight = document.documentElement.clientHeight - that.$refs.header.clientHeight
+                    - that.$refs.footer.clientHeight;
+                    var formHeight = that.$refs.form.clientHeight;
+                    var filesHeight = that.$refs.files.clientHeight;
+                    var checkHeight = that.$refs.check.clientHeight;
+                    that.editorHeight = that.centerHeight - formHeight - filesHeight - checkHeight - 40;
+                })
+            },
+            handleNodeClick(data) {
+                console.log(data);
+            }
+        },
+    })
+</script>
+</html>

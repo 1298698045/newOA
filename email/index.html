@@ -46,10 +46,39 @@
                                             <i class="iconfont icon-zhutizhongxin"></i>
                                         </div>
                                         <p class="name">{{ self.name }}</p>
-                                        <p class="emailNum">
+                                        <div class="emailNum">
                                             <span class="num">{{ self.num || ''}}</span>
-                                            <i class="iconfont icon-tianjia"></i>
-                                        </p>
+                                            <i class="iconfont icon-tianjia moreIcon"></i>
+                                            <div class="dropMenuWapper leftMoreDrop">
+                                                <div class="dropOptionList">
+                                                    <div class="dropOptionItem">
+                                                        <span class="nameText">全部标记已读</span>
+                                                    </div>
+                                                    <div class="dropOptionItem">
+                                                        <span class="nameText">标记全部邮件</span>
+                                                        <span class="rightIcon">
+                                                            <i class="iconfont icon-xiala rotate90deg"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="dropOptionItem">
+                                                        <span class="nameText">移动全部邮件</span>
+                                                        <span class="rightIcon">
+                                                            <i class="iconfont icon-xiala rotate90deg"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="dropOptionList">
+                                                    <div class="dropOptionItem">
+                                                        <span class="nameText">下移</span>
+                                                    </div>
+                                                </div>
+                                                <div class="dropOptionList">
+                                                    <div class="dropOptionItem">
+                                                        <span class="nameText">清空此文件夹</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </transition>
@@ -697,7 +726,34 @@
                 <span class="text">已选1项</span>
                 <button class="btn">删除</button>
                 <button class="btn">移动</button>
-                <button class="btn">标记星标</button>
+                <button class="btn">标记星标
+                    <div class="dropMenuWapper bottomEditDrop">
+                        <div class="dropOptionList">
+                            <div class="dropOptionItem">
+                                <span class="nameText">已读</span>
+                            </div>
+                            <div class="dropOptionItem">
+                                <span class="nameText">未读</span>
+                            </div>
+                        </div>
+                        <div class="dropOptionList">
+                            <div class="dropOptionItem">
+                                <span class="nameText">跟进事项</span>
+                            </div>
+                            <div class="dropOptionItem">
+                                <span class="nameText">完成事项</span>
+                            </div>
+                        </div>
+                        <div class="dropOptionList">
+                            <div class="dropOptionItem">
+                                <span class="nameText">标签</span>
+                                <span class="rightIcon">
+                                    <i class="iconfont icon-xiala rotate90deg"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </button>
                 <button class="btn">标为已读</button>
                 <button class="btn">以附件转发</button>
                 <button class="btn" @click="cancelEdit">取消</button>

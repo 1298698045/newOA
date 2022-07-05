@@ -151,12 +151,28 @@ body{
     line-height: 20px;
     color: #aaaaaa;
     font-size: 12px;
+    position: relative;
 }
-.emailMenuWrap .emailItem .menuChildren .menuChildItem .emailNum .iconfont{
+.emailMenuWrap .emailItem .menuChildren .menuChildItem .emailNum:hover .dropMenuWapper.leftMoreDrop{
+    display: block;
+}
+.dropMenuWapper.leftMoreDrop{
+    width: 200px;
+    min-height: auto;
+    max-height: initial;
+    top: 100% !important;
+    padding-top: 0 !important; 
+    display: none;
+}
+.dropMenuWapper.leftMoreDrop .dropOptionList:first-child{
+    border-top: none;
+    margin-top: 0;
+}
+.emailMenuWrap .emailItem .menuChildren .menuChildItem .emailNum .moreIcon{
     display: none;
     font-size: 12px;
 }
-.emailMenuWrap .emailItem .menuChildren .menuChildItem .emailNum:hover .iconfont{
+.emailMenuWrap .emailItem .menuChildren .menuChildItem .emailNum:hover .moreIcon{
     display: block;
 }
 .emailMenuWrap .emailItem .menuChildren .menuChildItem .emailNum:hover .num{
@@ -714,4 +730,20 @@ body{
 }
 .footerEdit .footerEditBox .el-checkbox__label{
     color: #1d2129;
+}
+.footerEdit .footerEditBox .btn{
+    position: relative;
+}
+.footerEdit .footerEditBox .btn:hover .bottomEditDrop{
+    display: block;
+}
+.footerEdit .footerEditBox  .dropMenuWapper.bottomEditDrop{
+    width: 198px;
+    display: none;
+    bottom: 100%;
+    top: initial;
+    padding: 0;
+}
+.footerEdit .footerEditBox  .dropMenuWapper.bottomEditDrop .dropOptionList:first-child{
+    border-top: 0;
 }
